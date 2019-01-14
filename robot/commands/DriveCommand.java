@@ -18,7 +18,7 @@ public class DriveCommand extends Command {
  //speed damper , speed modifier , change motor speed
  @Override
  protected void execute() {
-   Robot.driveSubsystem.driveJoystick(Robot.m_oi.getDriverStick(), 0.3);
+   Robot.driveSubsystem.driveJoystick(Robot.m_oi.getDriverStick(), 0.8);
  }
 
  // Will only return true if the command is cancelled
