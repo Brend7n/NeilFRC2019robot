@@ -5,7 +5,7 @@ import frc.robot.Robot;
 public class DriveCommand extends Command {
   public DriveCommand() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+    // requires(Robot.driveSubsystem);
   }
 
  // Ensures motors aren't already moving 
@@ -18,7 +18,7 @@ public class DriveCommand extends Command {
  //speed damper , speed modifier , change motor speed
  @Override
  protected void execute() {
-   Robot.driveSubsystem.driveJoystick(Robot.m_oi.getDriverStick(), 0.8);
+   Robot.driveSubsystem.driveJoystick(Robot.m_oi.getDriverStick(), 1);
  }
 
  // Will only return true if the command is cancelled
