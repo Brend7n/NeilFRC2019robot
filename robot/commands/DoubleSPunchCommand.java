@@ -11,6 +11,7 @@ public class DoubleSPunchCommand extends Command {
 
   public DoubleSPunchCommand(boolean direction) {
     this.direction = direction;
+    //requires(Robot.doubleSPunchSubsystem);
   }
 
   // Making sure the solenoid is not already moving before
