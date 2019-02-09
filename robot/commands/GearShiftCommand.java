@@ -18,7 +18,7 @@ public class GearShiftCommand extends Command {
   @Override
   protected void initialize() {
 
-    Robot.gearShifterSubsystem.doubleIdle();
+    //Robot.gearShifterSubsystem.doubleIdle();
   }
 
   // Takes in the boolean from the constructor to punch or retract
@@ -40,7 +40,7 @@ public class GearShiftCommand extends Command {
   // Ensures that the solenoid does not continue to move
   @Override
   protected void end() {
-    Robot.gearShifterSubsystem.doubleIdle();
+    //Robot.gearShifterSubsystem.doubleIdle();
   }
 
   // Ends the command in case of interruption
