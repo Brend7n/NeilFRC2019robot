@@ -19,7 +19,7 @@ public class DoubleSPunchCommand extends Command {
   @Override
   protected void initialize() {
 
-    Robot.doubleSPunchSubsystem.doubleIdle();
+    //Robot.doubleSPunchSubsystem.doubleIdle();
   }
 
   // Takes in the boolean from the constructor to punch or retract
@@ -41,7 +41,7 @@ public class DoubleSPunchCommand extends Command {
   // Ensures that the solenoid does not continue to move
   @Override
   protected void end() {
-    Robot.doubleSPunchSubsystem.doubleIdle();
+    //Robot.doubleSPunchSubsystem.doubleIdle();
   }
 
   // Ends the command in case of interruption
