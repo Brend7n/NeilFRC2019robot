@@ -14,6 +14,8 @@ public class RobotMap {
     public static final int frontLeft = 6;
     public static final int middleLeft = 4;
     public static final int backLeft = 5;
+
+    public static final int elavator = 7;
   
     // PCM Channels
     public static final int doubleSolenoid1 = 3;
