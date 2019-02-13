@@ -25,14 +25,11 @@ public class RobotMap {
     public static final int doubleSolenoidShiftRighta = 1;
     public static final int doubleSolenoidShiftRightb = 6;
 
-    // Digital Input Ports
-/*  
+    // Digital Input Ports 
   // Drivetrain Encoder Ports
-    public static final int leftEnc1 = 0;
-    public static final int leftEnc2 = 1;
-    public static final int rightEnc1 = 2;
-    public static final int rightEnc2 = 3;
-
+    public static final int enc1a = 0;
+    public static final int enc1b = 1;
+/*
   // Intake Ultrasonic Ports
     public static final int ping = 4;
     public static final int echo = 5;
