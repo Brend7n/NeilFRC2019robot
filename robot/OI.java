@@ -8,36 +8,35 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 //import frc.robot.Robot;
 import frc.robot.commands.DoubleSPunchCommand;
 import frc.robot.commands.GearShiftCommand;
+import frc.robot.commands.ElavatorControlCommand;
 public class OI {
 	// Instantiaion of joysticks
 	Joystick driverStick = new Joystick(0);
-	Joystick operatorStick = new Joystick(1);
-  // Instantiation of buttons with names based on their 
-	// associated commands
+	//Joystick operatorStick = new Joystick(1);
+  // Instantiation of buttons with names based on their associated commands
 	JoystickButton doublePunch = new JoystickButton(driverStick, 1);
   JoystickButton doubleRetract = new JoystickButton(driverStick, 2);
   
   JoystickButton doubleShiftUp = new JoystickButton(driverStick, 3);
-	JoystickButton doubleShiftDown = new JoystickButton(driverStick, 4);
+  JoystickButton doubleShiftDown = new JoystickButton(driverStick, 4);
 
-	// Joystick accessors
-
+  JoystickButton elavatorUp = new JoystickButton(driverStick, 7);
+  JoystickButton elavatorDown = new JoystickButton(driverStick, 8);
+	// Joystick accessors 
 	public Joystick getDriverStick() {
 		return driverStick;
 	}
-
-  /*	public Joystick getOperatorStick() {
-		return operatorStick;
-	}
-	*/
+  
 	public OI(){
-
 		// Associating commands with buttons
-		doublePunch.whenPressed(new DoubleSPunchCommand(true));
-    doubleRetract.whenPressed(new DoubleSPunchCommand(false));
+		doublePunch.whileHeld(new DoubleSPunchCommand(true));
+    doubleRetract.whileHeld(new DoubleSPunchCommand(false));
     
-    doubleShiftUp.whenPressed(new GearShiftCommand(true));
-    doubleShiftDown.whenPressed(new GearShiftCommand(false));
+    doubleShiftUp.whileHeld(new GearShiftCommand(true));
+    doubleShiftDown.whileHeld(new GearShiftCommand(false));
+
+    elavatorUp.whileHeld(new ElavatorControlCommand(false));
+    elavatorDown.whileHeld(new ElavatorControlCommand(true));
 	}
 /*  //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
