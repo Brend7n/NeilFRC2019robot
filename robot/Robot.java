@@ -9,6 +9,7 @@ import frc.robot.commands.DriveCommand;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.DoubleSPunchSubsystem;
 import frc.robot.subsystems.GearShifterSubsystem;
+import frc.robot.subsystems.ElavatorSubsystem;
 import edu.wpi.first.wpilibj.Compressor;
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -21,6 +22,7 @@ public class Robot extends TimedRobot {
   public static DriveSubsystem driveSubsystem = new DriveSubsystem();
   public static DoubleSPunchSubsystem doubleSPunchSubsystem = new DoubleSPunchSubsystem();
   public static GearShifterSubsystem gearShifterSubsystem = new GearShifterSubsystem();
+  public static ElavatorSubsystem elavatorSubsystem = new ElavatorSubsystem();
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
   Command driveCommand = new DriveCommand();
