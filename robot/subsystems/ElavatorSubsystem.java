@@ -3,8 +3,11 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Victor;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.SpeedController;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 import edu.wpi.first.wpilibj.Encoder;
 import frc.robot.RobotMap;
 
@@ -12,26 +15,24 @@ public class ElavatorSubsystem extends Subsystem {
   // Instantiation of speed controllers
   //CANBus port numbers are in RobotMap
 
-  Victor elavator = new Victor(RobotMap.elavator);
-
-  //Groups speed controllers together
-  SpeedController elavatorController = new SpeedControllerGroup(elavator);
-
-  // encoder instantiation
-  Encoder enc = new Encoder(RobotMap.enc1a, RobotMap.enc1b, false, Encoder.EncodingType.k4X);
+  TalonSRX elavator = new TalonSRX(RobotMap.elavator);
+  elavator.changeControlMode(ControlMode.PercentVbus); //Change control mode of talon, default is PercentVbus (-1.0 to 1.0)
+  elavator.setPID(0.0, 0.0, 0.0); //Set the PID constants (p, i, d)
+  elavator.enableControl(); //Enable PID control on the talon
 
   public void elavatorButtonControl(boolean direction, double speed){
     //true = forward, false = backwards (or vice versa depending on how the motors were connected)
     speed = Math.abs(speed);
     if(direction){
-      elavatorController.set(speed);
+      elavator.set(ControlMode.PercentOutput, speed);
     }else{
-      elavatorController.set(-speed);
+      elavator.set(ControlMode.PercentOutput, -speed);
     }
   }
 
   public void stop(){
-    elavatorController.stopMotor();
+    elavator.neutralOutput();
+
   }
 
   // Gets a Raw encoder value
