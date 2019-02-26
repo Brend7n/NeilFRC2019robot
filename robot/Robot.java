@@ -10,7 +10,6 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.DoubleSPunchSubsystem;
 import frc.robot.subsystems.GearShifterSubsystem;
 import frc.robot.subsystems.ElavatorSubsystem;
-import edu.wpi.first.wpilibj.Compressor;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -26,7 +25,7 @@ public class Robot extends TimedRobot {
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
   Command driveCommand = new DriveCommand();
-  Compressor compressor = new Compressor();
+  //Compressor compressor = new Compressor();
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -34,6 +33,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
+    elavatorSubsystem.talonSetup();
     //m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     //SmartDashboard.putData("Auto mode", m_chooser);
@@ -95,9 +95,8 @@ public class Robot extends TimedRobot {
   public void teleopInit() {
     //This makes sure that the autonomous stops running when teleop starts running.If you want the autonomous to
     //continue until interrupted by another command, remove teleop starts running
-
     driveCommand.start();
-    compressor.start();
+    
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
