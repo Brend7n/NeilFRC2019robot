@@ -1,26 +1,44 @@
 
+
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.Victor;
-import edu.wpi.first.wpilibj.SpeedController;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-
-import edu.wpi.first.wpilibj.Encoder;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
+import com.ctre.phoenix.motorcontrol.can.*;
 import frc.robot.RobotMap;
 
 public class ElavatorSubsystem extends Subsystem {
-  // Instantiation of speed controllers
-  //CANBus port numbers are in RobotMap
+  // Instantiation of speed controllers CANBus port numbers are in RobotMap
+  //final Gains kGains = new Gains(kP 0.2, kI 0.0, kD 0.0, kF 0.2, kIzone 0, kPeakOutput 1.0);
+  public int currentElavatorPosition;
 
   TalonSRX elavator = new TalonSRX(RobotMap.elavator);
-  elavator.changeControlMode(ControlMode.PercentVbus); //Change control mode of talon, default is PercentVbus (-1.0 to 1.0)
-  elavator.setPID(0.0, 0.0, 0.0); //Set the PID constants (p, i, d)
-  elavator.enableControl(); //Enable PID control on the talon
+  public void talonSetup() {
+  elavator.configFactoryDefault();
+  elavator.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 30);
+  
+  elavator.setSensorPhase(true);
+  elavator.setInverted(false);
 
-  public void elavatorButtonControl(boolean direction, double speed){
+  elavator.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10, 30);
+  elavator.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, 30);
+
+  elavator.selectProfileSlot(0, 0);
+	elavator.config_kF(0, 0.2, 30);
+	elavator.config_kP(0, 0.2, 30);
+	elavator.config_kI(0, 0.0, 30);
+  elavator.config_kD(0, 0.0, 30);
+  
+  elavator.configMotionCruiseVelocity(15000, 30);
+  elavator.configMotionAcceleration(6000, 30);
+  
+  elavator.setSelectedSensorPosition(0, 0, 30);
+  }
+  
+  
+  /*  //(public void elavatorButtonControl(boolean direction, double speed){
     //true = forward, false = backwards (or vice versa depending on how the motors were connected)
     speed = Math.abs(speed);
     if(direction){
@@ -28,31 +46,35 @@ public class ElavatorSubsystem extends Subsystem {
     }else{
       elavator.set(ControlMode.PercentOutput, -speed);
     }
+  }*/
+
+  public void setElavatorPosition(int targetPos) {
+    
+    if (targetPos == 0) elavator.set(ControlMode.MotionMagic, RobotMap.lowElavatorPosition);
+    if (targetPos == 1) elavator.set(ControlMode.MotionMagic, RobotMap.medElavatorPosition);
+    if (targetPos == 2) elavator.set(ControlMode.MotionMagic, RobotMap.highElavatorPosition);
+    currentElavatorPosition = targetPos;
+  }
+
+  public void changeElavatorPosition(boolean upOrDown) {
+    int targetPos = currentElavatorPosition;
+    if (upOrDown) {
+      targetPos += 1;
+    } else {
+      targetPos -= 1;
+    }
+    if (targetPos >= 0 && targetPos <= RobotMap.elavatorMax ) {
+      if (targetPos == 0) elavator.set(ControlMode.MotionMagic, RobotMap.lowElavatorPosition);
+      if (targetPos == 1) elavator.set(ControlMode.MotionMagic, RobotMap.medElavatorPosition);
+      if (targetPos == 2) elavator.set(ControlMode.MotionMagic, RobotMap.highElavatorPosition);
+      currentElavatorPosition = targetPos;
+    }
   }
 
   public void stop(){
-    elavator.neutralOutput();
-
+    elavator.set(ControlMode.Disabled, 0);
   }
 
-  // Gets a Raw encoder value
-	// Similarly, getCount will give you the number of 
-	// "clicks" it has recorded
-	public double getEncRaw(){
-		return enc.getRaw();
-	}
-/*
-	// Gets a distance based on a factor for units per
-	// encoder value
-	// Units used is up to the team
-	public double getEncDistance(){
-		return getEncRaw() * 0.0008;
-	}
-*/
-	//Resets the encoders so that they read from 0 again
-	public void encReset(){
-		enc.reset();
-	}
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
