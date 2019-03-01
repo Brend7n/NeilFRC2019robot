@@ -26,20 +26,12 @@ public class RobotMap {
     public static final int doubleSolenoidShiftRightb = 6;
 
     // elavator constants 4096 is 360 degrees
-    public static final int highElavatorPosition = 40 * 4096;
-    public static final int medElavatorPosition = 20 * 4096;
-    public static final int lowElavatorPosition = 2 * 4096;
-    public static final int elavatorMax = 40 * 4096;
+    public static final int highElavatorPosition = 30 * 4096;
+    public static final int medElavatorPosition = 15 * 4096;
+    public static final int lowElavatorPosition = 0;
+    public static final int elavatorMax = 30 * 4096;
 
-    // Digital Input Ports 
-  // Drivetrain Encoder Ports
-    //public static final int enc1a = 0;
-    //public static final int enc1b = 1;
 /*
-  // Intake Ultrasonic Ports
-    public static final int ping = 4;
-    public static final int echo = 5;
-
   If you are using multiple modules, make sure to define both the port
   number and the module. For example you with a rangefinder:
   public static int rangefinderPort = 1;
