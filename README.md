@@ -6,4 +6,4 @@ it is downloaded extract it, open it, select the 'robot' folder and cut or copy 
 enter/select the 'wpilib: create a new project' command, select 'Template', 'Java', 'Command Robot'. Make a new project folder for
 it and give it a Name that makes sense, and enter your team #. Once you are in the new project find the robot file under the frc
 file and delete it. Select the frc folder then right click it and click 'Reveal in explorer', then paste the file from earlier in
-that folder.
+that folder. You Also need to add the Phoenix library to the project
