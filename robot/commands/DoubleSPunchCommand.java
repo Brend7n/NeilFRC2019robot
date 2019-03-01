@@ -9,11 +9,8 @@ public class DoubleSPunchCommand extends Command {
   boolean direction = true;
   public DoubleSPunchCommand(boolean direction) {
     this.direction = direction;
-    //requires(Robot.doubleSPunchSubsystem);
+    requires(Robot.doubleSPunchSubsystem);
   }
-
-  // Making sure the solenoid is not already moving before
-  // executing the punch/retract
   @Override
   protected void initialize() {
     if(direction){
