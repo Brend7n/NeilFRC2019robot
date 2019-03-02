@@ -3,7 +3,9 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import frc.robot.RobotMap;
+
 public class GearShifterSubsystem extends Subsystem {
+  
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   DoubleSolenoid doubleSRight = new DoubleSolenoid(RobotMap.doubleSolenoidShiftRighta, RobotMap.doubleSolenoidShiftRightb);
@@ -26,10 +28,11 @@ public class GearShifterSubsystem extends Subsystem {
     doubleSLeft.set(DoubleSolenoid.Value.kOff);
     doubleSRight.set(DoubleSolenoid.Value.kOff);
   }
-
+  
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+    
   }
 }

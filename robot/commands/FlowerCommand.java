@@ -3,14 +3,13 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class GearShiftCommand extends Command {
-// True direction indicates "punching," false indicates retracting
+public class FlowerCommand extends Command {
+  // True direction indicates "punching," false indicates retracting
   // of the solenoid
   boolean direction = true;
-
-  public GearShiftCommand(boolean direction) {
+  public FlowerCommand(boolean direction) {
     this.direction = direction;
-    //requires(Robot.gearShifterSubsystem);
+    //requires(Robot.doubleSPunchSubsystem);
   }
 
   // Making sure the solenoid is not already moving before
@@ -18,11 +17,11 @@ public class GearShiftCommand extends Command {
   @Override
   protected void initialize() {
     if(direction){
-      Robot.gearShifterSubsystem.doubleShiftUp();
+      Robot.doubleSPunchSubsystem.doublePunch();
     }else{
-      Robot.gearShifterSubsystem.doubleShiftDown();
+      Robot.doubleSPunchSubsystem.doubleRetract();
     }
-    //Robot.gearShifterSubsystem.doubleIdle();
+    //Robot.doubleSPunchSubsystem.doubleIdle();
   }
 
   // Takes in the boolean from the constructor to punch or retract
@@ -34,13 +33,13 @@ public class GearShiftCommand extends Command {
   // Returns true immediately so execute only runs once
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Ensures that the solenoid does not continue to move
   @Override
-  protected void end() {
-//    Robot.gearShifterSubsystem.doubleIdle();
+ protected void end() {
+//  Robot.doubleSPunchSubsystem.doubleIdle();
   }
 
   // Ends the command in case of interruption

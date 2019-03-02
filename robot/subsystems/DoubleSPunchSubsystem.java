@@ -6,6 +6,7 @@ import frc.robot.RobotMap;
 public class DoubleSPunchSubsystem extends Subsystem {
   // Instantiation of double solenoid
   // PCM channels are in RobotMap
+ 
   DoubleSolenoid doubleS = new DoubleSolenoid(RobotMap.doubleSolenoid1, RobotMap.doubleSolenoid2);
 
   // "Punches" double solenoid outwards
@@ -22,7 +23,7 @@ public class DoubleSPunchSubsystem extends Subsystem {
   public void doubleIdle(){
     doubleS.set(DoubleSolenoid.Value.kOff);
   }
-
+  
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

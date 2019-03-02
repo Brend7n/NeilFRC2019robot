@@ -56,7 +56,7 @@ public class DriveSubsystem extends Subsystem {
 	// from 0 to 1
 	public void driveJoystick(Joystick joystick, double speed) {
 		
-		drive.arcadeDrive(joystick.getY()*speed, joystick.getX()*speed);
+		drive.arcadeDrive(joystick.getY()*speed, - joystick.getX()*speed);
 	}
 	
 	// Drives drivetrain based on given speed and roation values
