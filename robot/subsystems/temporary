@@ -1,0 +1,7 @@
+public void driveJoystick(Joystick joystick, double speed) {
+		if (joystick.getRawAxis(1) > 0.1) {
+			intakeController.set(joystick.getRawAxis(2));
+		} else if (joystick.getRawAxis(3) > 0.1) {
+			intakeController.set(joystick.getRawAxis(3) * -1 );
+		}
+}
