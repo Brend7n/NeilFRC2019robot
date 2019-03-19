@@ -10,6 +10,7 @@ public class ElavatorToPositionCommand extends Command {
   int targetPos;
   int targetPosNum;
   double desiredPower = 0.0;
+  int error;
   public ElavatorToPositionCommand(int targetPos) {
     this.targetPos = targetPos;
     requires(Robot.elavatorSubsystem);
@@ -32,20 +33,24 @@ public class ElavatorToPositionCommand extends Command {
   }
   @Override
   protected void execute() {
-  
-    if ((targetPosNum-Robot.elavatorSubsystem.getEncoderValue())>RobotMap.highSpeedPositionRange) desiredPower = 1;
-    else if ((targetPosNum-Robot.elavatorSubsystem.getEncoderValue())<RobotMap.highSpeedPositionRange) desiredPower = -1;
-    else if ((targetPosNum-Robot.elavatorSubsystem.getEncoderValue())>RobotMap.medSpeedPositionRange) desiredPower = 0.5;
-    else if ((targetPosNum-Robot.elavatorSubsystem.getEncoderValue())<RobotMap.medSpeedPositionRange) desiredPower = -0.5;
-    else if ((targetPosNum-Robot.elavatorSubsystem.getEncoderValue())>RobotMap.lowSpeedPositionRange) desiredPower = 0.2;
-    else if ((targetPosNum-Robot.elavatorSubsystem.getEncoderValue())<RobotMap.lowSpeedPositionRange) desiredPower = -0.2;
-    else desiredPower = 0;
+    error = targetPosNum-Robot.elavatorSubsystem.getEncoderValue();
+    if (error >=RobotMap.highSpeedPositionRange) { desiredPower = 1; }
+
+    else if ( error <RobotMap.highSpeedPositionRange && error > RobotMap.medSpeedPositionRange ) { desiredPower = -1; }
+    else if ( error >RobotMap.medSpeedPositionRange) { desiredPower = 0.7; }
+    else if ( error <RobotMap.medSpeedPositionRange) { desiredPower = -0.7; }
+    else if ( error >RobotMap.lowSpeedPositionRange)  {desiredPower = 0.5; }
+    else if ( error <RobotMap.lowSpeedPositionRange) { desiredPower = -0.5; }
+    else { desiredPower = 0; }
+    
+    System.out.println("Power: " + desiredPower);
+    System.out.println("Target distance: " + error );
     Robot.elavatorSubsystem.elavatorPercentOutput(desiredPower);
   }
   @Override
   protected boolean isFinished() {
     //dead band -0.1 < x < 0.1
-    if (Robot.m_oi.getOperatorStick().getRawAxis(3) > -0.1 && Robot.m_oi.getOperatorStick().getRawAxis(3) < 0.1) {
+    if (Robot.m_oi.getOperatorStick().getRawAxis(3) > 0.2 || Robot.m_oi.getOperatorStick().getRawAxis(3) < -0.2) {
       return true;
     } else {
       if (desiredPower < 0.2 && desiredPower > -0.2) {

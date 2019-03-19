@@ -3,7 +3,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.ElavatorManualCommand;
@@ -14,11 +13,8 @@ import frc.robot.subsystems.ElavatorSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
-/**
- * The VM is configured to automatically run this class, and to call the
- * functions corresponding to each mode, as described in the TimedRobot
- * documentation.
- */
+import edu.wpi.first.wpilibj.smartdashboard.*;
+
 public class Robot extends TimedRobot {
   //instantiating subsytems
   public static OI m_oi;
@@ -70,6 +66,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
+    elavatorSubsystem.zeroEnc();
     driveCommand.start();
     intakeCommand.start();
     elavatorManualCommand.start();
@@ -87,7 +84,7 @@ public class Robot extends TimedRobot {
   public void teleopInit() {
     driveCommand.start();
     intakeCommand.start();
-    //compressor.stop();
+    compressor.stop();
     elavatorManualCommand.start();
   }
 
@@ -97,7 +94,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-    System.out.println(Robot.elavatorSubsystem.getEncoderValue() );
+    SmartDashboard.putNumber("encoder: ", Robot.elavatorSubsystem.getEncoderValue() );
   }
 
   /**

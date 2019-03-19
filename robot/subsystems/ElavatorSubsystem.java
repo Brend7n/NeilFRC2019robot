@@ -22,9 +22,12 @@ public class ElavatorSubsystem extends Subsystem {
   elavator.configFactoryDefault();
   elavator.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 30);
   elavator.setSensorPhase(true);
-  elavator.setInverted(false);
+  elavator.setInverted(true);
   elavator.setSelectedSensorPosition(0, 0, 30);
 
+  }
+  public void zeroEnc (){
+    elavator.setSelectedSensorPosition(0, 0, 30);
   }
 
   public void elavatorPercentOutput(double power) {

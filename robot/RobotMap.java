@@ -24,19 +24,19 @@ public class RobotMap {
     public static final int doubleSolenoid2 = 5;
     public static final int doubleSolenoidShiftLefta = 7;
     public static final int doubleSolenoidShiftLeftb = 0;
-    public static final int doubleSolenoidShiftRighta = 3;
-    public static final int doubleSolenoidShiftRightb = 4;
+    public static final int doubleSolenoidShiftRighta = 4;
+    public static final int doubleSolenoidShiftRightb = 3;
 
     // elavator constants 4096 is 360 degrees
     // these numbers are not tested yet
-    public static final int highElavatorPosition = 5 *4096;
-    public static final int medElavatorPosition = 3 * 4096;
-    public static final int lowElavatorPosition = 1 * 4096;
-    public static final int elavatorMax = 6 * 4096;
+    public static final int highElavatorPosition = 20 *4096;
+    public static final int medElavatorPosition = 10 * 4096;
+    public static final int lowElavatorPosition = 5 * 4096;
+    public static final int elavatorMax = 50 * 4096;
 
-    public static final double highSpeedPositionRange = 5 * 4096;
-    public static final double medSpeedPositionRange = 3 * 4096;
-    public static final double lowSpeedPositionRange = 1 * 4096;
+    public static final double highSpeedPositionRange = 6 * 4096;
+    public static final double medSpeedPositionRange = 4 * 4096;
+    public static final double lowSpeedPositionRange = 0.7 * 4096;
 
     // Digital Input Ports 
   // Drivetrain Encoder Ports
