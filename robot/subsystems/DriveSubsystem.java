@@ -3,8 +3,6 @@ package frc.robot.subsystems;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Joystick;
-//import edu.wpi.first.wpilibj.Encoder;
-//import edu.wpi.first.wpilibj.PWM;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -54,9 +52,15 @@ public class DriveSubsystem extends Subsystem {
 	}
 	// Drives drivetrain based on joystick input and dampening value (speed)
 	// from 0 to 1
+	double xSpeed;
 	public void driveJoystick(Joystick joystick, double speed) {
-		
-		drive.arcadeDrive(joystick.getY()*speed, - joystick.getX()*speed);
+		//deadband on x-axis
+		if (joystick.getX() < 0.2 && joystick.getX() > -0.2 ) {
+			xSpeed = 0;
+		} else {
+			xSpeed = joystick.getX();
+		}
+		drive.arcadeDrive(joystick.getY()*speed, - xSpeed *speed);
 	}
 	
 	// Drives drivetrain based on given speed and roation values
