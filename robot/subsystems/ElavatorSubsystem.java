@@ -3,7 +3,6 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-//import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.*;
 import frc.robot.RobotMap;
 
@@ -36,6 +35,7 @@ public class ElavatorSubsystem extends Subsystem {
 
   public int getEncoderValue() {
     return elavator.getSelectedSensorPosition();
+    
   }
 
   public void stop(){
