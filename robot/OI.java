@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 //import frc.robot.Robot;
 import frc.robot.commands.FlowerCommand;
 import frc.robot.commands.GearShiftCommand;
+import frc.robot.commands.ChangeDirectionCommand;
 //import frc.robot.commands.ElavatorManualCommand;
 import frc.robot.commands.ElavatorToPositionCommand;
 public class OI {
@@ -29,7 +30,10 @@ public class OI {
   JoystickButton elavatorMedium = new JoystickButton(operatorStick, 2);
   JoystickButton elavatorHigh = new JoystickButton(operatorStick, 3);
 
-	// Joystick accessors 
+  //change driving direction
+  JoystickButton changeDirection = new JoystickButton(driverStick, 3);
+
+	// Joystick accessors
 	public Joystick getDriverStick() {
 		return driverStick;
   }
@@ -44,19 +48,11 @@ public class OI {
     
     doubleShiftUp.whileHeld(new GearShiftCommand(true));
     doubleShiftDown.whileHeld(new GearShiftCommand(false));
-
-   //elavatorManualUp.whenPressed(new ElavatorControlCommand(true));
-   //elavatorManualDown.whenPressed(new ElavatorControlCommand(false));
+    
+    changeDirection.whenPressed(new ChangeDirectionCommand());
 
     elavatorLow.whenPressed(new ElavatorToPositionCommand(0));
     elavatorMedium.whenPressed(new ElavatorToPositionCommand(1));
     elavatorHigh.whenPressed(new ElavatorToPositionCommand(2));
   }
-/*  //// CREATING BUTTONS
-  // Joystick stick = new Joystick(port);
-  // Button button = new JoystickButton(stick, buttonNumber);
-  // button.whenPressed(new ExampleCommand());
-  // button.whileHeld(new ExampleCommand());
-  // button.whenReleased(new ExampleCommand());
-*/
 }
