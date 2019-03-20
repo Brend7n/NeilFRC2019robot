@@ -32,10 +32,7 @@ public class Robot extends TimedRobot {
   //camera stuff
   CameraServer server0 = CameraServer.getInstance();
   CameraServer server1 = CameraServer.getInstance();
-  /**
-   * This function is run when the robot is first started up and should be
-   * used for any initialization code.
-   */
+  /**This function is run when the robot is first started up*/
   @Override
   public void robotInit() {
     m_oi = new OI();
@@ -82,9 +79,9 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    //compressor.stop();
     driveCommand.start();
     intakeCommand.start();
-    compressor.stop();
     elavatorManualCommand.start();
   }
 
@@ -94,13 +91,12 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-    SmartDashboard.putNumber("encoder: ", Robot.elavatorSubsystem.getEncoderValue() );
+    SmartDashboard.putNumber("encoder: ", elavatorSubsystem.getEncoderValue() / 100);
   }
 
   /**
    * This function is called periodically during test mode.
    */
   @Override
-  public void testPeriodic() {
-  }
+  public void testPeriodic() {}
 }
