@@ -7,7 +7,7 @@ import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.ElavatorManualCommand;
 import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.subsystems.DoubleSPunchSubsystem;
+import frc.robot.subsystems.PistonSubsystem;
 import frc.robot.subsystems.GearShifterSubsystem;
 import frc.robot.subsystems.ElavatorSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -19,7 +19,7 @@ public class Robot extends TimedRobot {
   //instantiating subsytems
   public static OI m_oi;
   public static DriveSubsystem driveSubsystem = new DriveSubsystem();
-  public static DoubleSPunchSubsystem doubleSPunchSubsystem = new DoubleSPunchSubsystem();//flower
+  public static PistonSubsystem pistonSubsystem = new PistonSubsystem();
   public static GearShifterSubsystem gearShifterSubsystem = new GearShifterSubsystem();
   public static ElavatorSubsystem elavatorSubsystem = new ElavatorSubsystem();
   public static IntakeSubsystem intakeSubsystem = new IntakeSubsystem();

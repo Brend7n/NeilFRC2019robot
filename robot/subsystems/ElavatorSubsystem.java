@@ -30,7 +30,7 @@ public class ElavatorSubsystem extends Subsystem {
   }
 
   public void elavatorPercentOutput(double power) {
-    elavator.set(ControlMode.PercentOutput, power);
+    elavator.set(ControlMode.PercentOutput, power * 0.6);
   }
 
   public int getEncoderValue() {

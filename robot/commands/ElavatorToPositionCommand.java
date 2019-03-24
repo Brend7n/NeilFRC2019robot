@@ -39,7 +39,7 @@ public class ElavatorToPositionCommand extends Command {
     else if (error <-RobotMap.lowSpeedPositionRange ) { desiredPower = 0.5; }
     else { desiredPower = 0; }
     
-    System.out.println("Power: " + desiredPower + " error: " + error);
+//    System.out.println( "Power: " + desiredPower + " error: " + error);
 //    System.out.println("targetPosNum: " + targetPosNum);
 //    System.out.println("Robot.elavatorSubsystem.getEncoderValue(): " + Robot.elavatorSubsystem.getEncoderValue());
 //    System.out.println("Distance from Target : " + error );
@@ -49,7 +49,10 @@ Robot.elavatorSubsystem.elavatorPercentOutput(desiredPower);
   }
   @Override
   protected boolean isFinished() {
-    //interrupted when manual, dead band -0.1 < x < 0.1
+    if (Robot.elavatorSubsystem.getEncoderValue()>=RobotMap.elavatorMax) {
+      return true;
+    }
+    //interrupted when manual, dead band -0.2 < x < 0.2
     if (Robot.m_oi.getOperatorStick().getRawAxis(3) > 0.2 || Robot.m_oi.getOperatorStick().getRawAxis(3) < -0.2) {
       return true;
     } else {

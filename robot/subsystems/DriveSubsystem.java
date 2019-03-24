@@ -52,8 +52,7 @@ public class DriveSubsystem extends Subsystem {
 		
 		drive = new DifferentialDrive(left, right);
 	}
-	// Drives drivetrain based on joystick input and dampening value (speed)
-	// from 0 to 1
+	
 	int direction = 1;
 	public void changeDirection() {
 		if (direction == 1 ) {
@@ -61,8 +60,8 @@ public class DriveSubsystem extends Subsystem {
 		} else {
 			direction = 1;
 		}
-
 	}
+	
 	public void driveJoystick(Joystick joystick, double speed) {
 		
 		drive.arcadeDrive(joystick.getY()*speed * direction, - joystick.getX()*speed);

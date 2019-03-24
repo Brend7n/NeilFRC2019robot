@@ -6,7 +6,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 //import frc.robot.Robot;
-import frc.robot.commands.FlowerCommand;
+import frc.robot.commands.PistonCommand;
+import frc.robot.commands.PistonCommand2;
 import frc.robot.commands.GearShiftCommand;
 import frc.robot.commands.ChangeDirectionCommand;
 //import frc.robot.commands.ElavatorManualCommand;
@@ -22,8 +23,9 @@ public class OI {
   JoystickButton doubleShiftDown = new JoystickButton(driverStick, 2);
 
   //flower on the gamepad  
-  JoystickButton doublePunch = new JoystickButton(operatorStick, 7);
-  JoystickButton doubleRetract = new JoystickButton(operatorStick, 8);
+  JoystickButton doublePunch = new JoystickButton(driverStick, 4);
+  JoystickButton doublePunch2 = new JoystickButton(driverStick, 6);
+  //JoystickButton doubleRetract = new JoystickButton(operatorStick, 8);
 
   //elavator setting positions
   JoystickButton elavatorLow = new JoystickButton(operatorStick, 1);
@@ -43,8 +45,8 @@ public class OI {
   
 	public OI(){
 		// Associating commands with buttons
-		doublePunch.whileHeld(new FlowerCommand(true));
-    doubleRetract.whileHeld(new FlowerCommand(false));
+    doublePunch.whileHeld(new PistonCommand());
+    doublePunch2.whileHeld(new PistonCommand2());
     
     doubleShiftUp.whileHeld(new GearShiftCommand(true));
     doubleShiftDown.whileHeld(new GearShiftCommand(false));
